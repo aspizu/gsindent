@@ -12,3 +12,4 @@ man/texinfo2man
 src/indent
 target/
 .cache/
+gperf.c
