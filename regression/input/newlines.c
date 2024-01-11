@@ -9,14 +9,6 @@
    IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES
    OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. */
 
-
-
-
-
-
-
-
-
 /* Redistribution and use in source and binary forms are permitted
    permission. THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 
@@ -25,21 +17,19 @@
 
 int some_global;
 
-  /* Redistribution and use in source and binary forms are permitted
-     permission. THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY
-     EXPRESS OR
+/* Redistribution and use in source and binary forms are permitted
+   permission. THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY
+   EXPRESS OR
 
-     IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES
-     OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. */
+   IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES
+   OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. */
 
-main ()
-{
+main() {
   var1 = 33;
-  while (grop ())
-    {
-      foob ();
-      turds ();
-    }
+  while (grop()) {
+    foob();
+    turds();
+  }
 
-  exit ();
+  exit();
 }

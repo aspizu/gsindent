@@ -1,9 +1,7 @@
 
-int
-foo()
-{
-    bar();
-    /*
-     * A comment 
-     */
+int foo() {
+  bar();
+  /*
+   * A comment
+   */
 }

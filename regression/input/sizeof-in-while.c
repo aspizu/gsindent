@@ -1,6 +1,5 @@
-f ()
-{
+f() {
   do
-    g ();
-  while (sizeof (char));
+    g();
+  while (sizeof(char));
 }

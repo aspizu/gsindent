@@ -1,7 +1,1 @@
-int
-q::s ()
-{
-  int
-    i;
-}
-
+int q::s() { int i; }

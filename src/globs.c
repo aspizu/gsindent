@@ -19,73 +19,67 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "sys.h"
-#include "indent.h"
 #include "globs.h"
+#include "indent.h"
 #include "parse.h"
+#include "sys.h"
 
 #ifdef HAVE_MALLOC_H
 #include <malloc.h>
 #endif
-#include <stdlib.h>
 #include <errno.h>
+#include <stdlib.h>
 
-RCSTAG_CC ("$Id$");
+RCSTAG_CC("$Id$");
 
 /**
  * Like malloc but get error if no storage available.  size really should be
  * size_t, but not all systems have size_t, so I hope "unsigned" will work.
  * It works for GNU style machines, where it is 32 bits, and works on
  * MS-DOS.  */
-extern void *xmalloc (unsigned int size)
-{
-    void *val = calloc(1, size);
+extern void *xmalloc(unsigned int size) {
+  void *val = calloc(1, size);
 
-    if (!val)
-    {
-        fprintf(stderr, _("indent: Virtual memory exhausted.\n"));
-        do_exit(system_error);
-    }
+  if (!val) {
+    fprintf(stderr, _("indent: Virtual memory exhausted.\n"));
+    do_exit(system_error);
+  }
 
-#if defined (DEBUG)
-    /* Fill it with garbage to detect code which depends on stuff being
-       zero-filled.  */
-    memset(val, 'x', size);
+#if defined(DEBUG)
+  /* Fill it with garbage to detect code which depends on stuff being
+     zero-filled.  */
+  memset(val, 'x', size);
 #endif
 
-    return val;
+  return val;
 }
 
 /**
- * Like realloc but get error if no storage available. 
+ * Like realloc but get error if no storage available.
  */
-extern void *xrealloc(void *ptr, unsigned int size)
-{
-    void *val = realloc(ptr, size);
+extern void *xrealloc(void *ptr, unsigned int size) {
+  void *val = realloc(ptr, size);
 
-    if (!val)
-    {
-        fprintf(stderr, _("indent: Virtual memory exhausted.\n"));
-        do_exit(system_error);
-    }
+  if (!val) {
+    fprintf(stderr, _("indent: Virtual memory exhausted.\n"));
+    do_exit(system_error);
+  }
 
-    return val;
+  return val;
 }
 
 /**
  * Free and nullify a pointer allocated with xmalloc().
  */
-extern void xfree(void *ptr)
-{
-    if (!ptr)
-    {
+extern void xfree(void *ptr) {
+  if (!ptr) {
 #if defined(DEBUG)
-        fprintf(stderr, "indent: Attempting to free a NULL pointer.\n");
+    fprintf(stderr, "indent: Attempting to free a NULL pointer.\n");
 #endif
-        return;
-    }
+    return;
+  }
 
-    free(ptr);
+  free(ptr);
 }
 
 /**
@@ -96,26 +90,23 @@ extern void xfree(void *ptr)
  * \param[in] a0     First value to format, or NULL.
  * \param[in] a1     Second value to format, or NULL.
  */
-extern void message(char *kind, char *string, char *a0, char *a1)
-{
-    if (kind)
-    {
-        fprintf (stderr, _("indent: %s:%d: %s:"), in_name, line_no, kind);
-    }
+extern void message(char *kind, char *string, char *a0, char *a1) {
+  if (kind) {
+    fprintf(stderr, _("indent: %s:%d: %s:"), in_name, line_no, kind);
+  }
 
-    fprintf (stderr, string, a0, a1);
-    fprintf (stderr, "\n");
+  fprintf(stderr, string, a0, a1);
+  fprintf(stderr, "\n");
 }
 
 /**
  * Wrapper around exit to ensure things get
  * cleaned up.
  */
-extern void do_exit(int code)
-{
-    uninit_parser();
-    cleanup_user_specials();
-    exit(code);
+extern void do_exit(int code) {
+  uninit_parser();
+  cleanup_user_specials();
+  exit(code);
 }
 
 /**
@@ -123,23 +114,19 @@ extern void do_exit(int code)
  * "DEBUG" defined, abort ().
  */
 
-extern void fatal (
-    const char *string,
-    const char *a0)
-{
-    fprintf (stderr, _("indent: Fatal Error: "));
-    fprintf (stderr, string, a0);
-    fprintf (stderr, "\n");
+extern void fatal(const char *string, const char *a0) {
+  fprintf(stderr, _("indent: Fatal Error: "));
+  fprintf(stderr, string, a0);
+  fprintf(stderr, "\n");
 
 #ifdef DEBUG
-    abort ();
+  abort();
 #endif /* DEBUG */
 
-    if (errno)
-    {
-        fprintf (stderr, _("indent: System Error: "));
-        perror (0);
-    }
+  if (errno) {
+    fprintf(stderr, _("indent: System Error: "));
+    perror(0);
+  }
 
-    do_exit (indent_fatal);
+  do_exit(indent_fatal);
 }

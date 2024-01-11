@@ -1,9 +1,8 @@
-main ()
-{
-	int code;
+main() {
+  int code;
 
-	/*
-	 *  Thang.
-	 */
-	code = 1;
+  /*
+   *  Thang.
+   */
+  code = 1;
 }

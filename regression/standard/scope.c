@@ -1,11 +1,6 @@
-int
-foo (void)
-{
-     if (0)
-	     {
-		  ++i;
-	     }
-     {
-	  ++i;
-     }
+int foo(void) {
+  if (0) {
+    ++i;
+  }
+  { ++i; }
 }

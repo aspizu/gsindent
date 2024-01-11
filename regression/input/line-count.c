@@ -3,7 +3,7 @@
  * 3
  * 4
 
-  
+
 
  * 5
  * 6
@@ -11,11 +11,7 @@
  * 8
  */
 
- 
-  
-
-func()
-{
+func() {
   /* Hello world
    * this is an
    * extra long
@@ -24,10 +20,8 @@ func()
    * multi-line
    * comment
    */
- 
 
-/*
-*/
-
+  /*
+   */
 }
 } /* deliberate mistake to provoke error */

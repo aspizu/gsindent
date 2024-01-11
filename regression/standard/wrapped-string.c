@@ -1,18 +1,15 @@
 #include <stdio.h>
-int
-main ()
-{
+int main() {
   char *format = "\
 %c %c %c
-%c %c %c
-%c %c %c\n";
+                 % c % c % c % c % c %
+                 c\n ";
 
-  printf (format, '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                 printf(format, '1', '2', '3', '4', '5', '6', '7', '8', '9');
 }
 
-static inline void
-__generic_memcpy_fromfs (void *to, const void *from, unsigned long n)
-{
+static inline void __generic_memcpy_fromfs(void *to, const void *from,
+                                           unsigned long n) {
   __asm__ volatile ("	cld
 		cmpl $3,%0
 		jbe 1f
@@ -29,9 +26,8 @@ __generic_memcpy_fromfs (void *to, const void *from, unsigned long n)
 		fs; rep; movsb");
 }
 
-static inline void
-__generic_memcpy_fromfs (void *to, const void *from, unsigned long n)
-{
+static inline void __generic_memcpy_fromfs(void *to, const void *from,
+                                           unsigned long n) {
   __asm__ volatile ("	cld
 		cmpl $3,%0
 		jbe 1f

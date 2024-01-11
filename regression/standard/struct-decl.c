@@ -1,27 +1,15 @@
-enum
-{
-  t1,
-  t2
-} barfoo;
+enum { t1, t2 } barfoo;
 
-struct foobar
-{
+struct foobar {
   int ch;
   char f;
 } xyz;
 
-main ()
-{
-  enum
-  {
-    None, Indent_on, Indent_off
-  }
-  com;
+main() {
+  enum { None, Indent_on, Indent_off } com;
 
-  struct foobar
-  {
+  struct foobar {
     int ch;
     char f;
-  }
-  xyz;
+  } xyz;
 }

@@ -1,6 +1,4 @@
-int
-aa (int b)
-{
+int aa(int b) {
   int a = 1;
   if (a == 1) {
     a = 1;
@@ -12,7 +10,7 @@ aa (int b)
   }
 
   /* test */
-  if (!check (a)) {
+  if (!check(a)) {
     a = 0;
   }
 }

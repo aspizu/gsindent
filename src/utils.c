@@ -22,24 +22,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "utils.h"
 #include "globs.h"
+#include "utils.h"
 
 /**
  *
  */
 
-extern void DieError(
-   int          errval,
-   const char * fmt,
-   ...)
-{
-    va_list ap;
-    va_start(ap, fmt);
+extern void DieError(int errval, const char *fmt, ...) {
+  va_list ap;
+  va_start(ap, fmt);
 
-    vfprintf(stderr, fmt, ap);
+  vfprintf(stderr, fmt, ap);
 
-    va_end(ap);
+  va_end(ap);
 
-    do_exit(errval);
+  do_exit(errval);
 }

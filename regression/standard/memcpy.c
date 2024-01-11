@@ -2,11 +2,10 @@
    if the source overlaps with the destination.
    Return DESTADDR. */
 
-char *
-memcpy (destaddr, srcaddr, len)
-     char *destaddr;
-     char *srcaddr;
-     int len;
+char *memcpy(destaddr, srcaddr, len)
+char *destaddr;
+char *srcaddr;
+int len;
 {
   char *dest = destaddr;
 

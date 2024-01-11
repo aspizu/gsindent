@@ -1,12 +1,10 @@
-void
-foo ()
-{
+void foo() {
   /*
-   * first comment 
+   * first comment
    */
 
   /*
-   * second comment 
+   * second comment
    *//*
    * third comment 
    */
@@ -19,7 +17,7 @@ foo ()
    ** fifth comment *
    */
 
-/*
-* sixth comment *
-*/
+  /*
+   * sixth comment *
+   */
 }

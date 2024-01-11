@@ -11,11 +11,11 @@
 
 int global;
 
-    /******************************************************************
-     *                                                                *
-     *  Here is a nice big boxed comment.  Enjoy it!!   file fill fil *
-     *                                                                *
-     ******************************************************************/
+/******************************************************************
+ *                                                                *
+ *  Here is a nice big boxed comment.  Enjoy it!!   file fill fil *
+ *                                                                *
+ ******************************************************************/
 
 int barof;
 
@@ -25,42 +25,31 @@ int barof;
  *                                                                *
  ******************************************************************/
 
-main ()
-{
-  printf ("Eat me\n");
-}
-
+main() { printf("Eat me\n"); }
 
 /* Les boites de Francois */
-
 
 /*====================================================================\
 | Note that Standard Input must be associated to a virtual terminal.  |
 | Further, it must be currently displayed for any sound to occur.     |
 \====================================================================*/
 
-
 /* Note that Standard Input must be associated to a virtual terminal.  */
 /* Further, it must be currently displayed for any sound to occur.     */
 /* ------------------------------------------------------------------- */
 
-
-sfou ()
-{
-  while (foo)
-    {
-      printf ("Save me from indent");
-      printf ("What idiot wrote this program?");
-    }  /**************************************
-	* Another woeird boxed comment       *
-	*                                    *
-	**************************************/
-
+sfou() {
+  while (foo) {
+    printf("Save me from indent");
+    printf("What idiot wrote this program?");
+  } /**************************************
+     * Another woeird boxed comment       *
+     *                                    *
+     **************************************/
 
   i = 33;
-  while (foo)
-    {
-      printf ("Save me from indent");
-      printf ("What idiot wrote this program?");
-    }
+  while (foo) {
+    printf("Save me from indent");
+    printf("What idiot wrote this program?");
+  }
 }

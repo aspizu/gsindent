@@ -1,5 +1,4 @@
-main ()
-{
+main() {
   return;
-  malloc (x (int) + 2 * 4);
+  malloc(x(int) + 2 * 4);
 }

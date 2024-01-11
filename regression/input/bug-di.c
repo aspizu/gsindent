@@ -1,6 +1,5 @@
 
-int foo()
-{
+int foo() {
   bar();
   /* A comment */
 }

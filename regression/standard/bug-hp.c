@@ -1,4 +1,1 @@
-void dblptr_main(void)
-{
-  double (*valfnc)(const char *);
-}
+void dblptr_main(void) { double (*valfnc)(const char *); }

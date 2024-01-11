@@ -1,7 +1,6 @@
-void foo()
-{
+void foo() {
 #ifdef foo
-if (1) {
-} /* if */
+  if (1) {
+  } /* if */
 #endif
 }

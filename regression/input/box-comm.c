@@ -4,7 +4,4 @@
 
 Sometimes I like to do something like this.
 \*********************************************************************/
-void Hello(void)
-{
-  printf("Hello world.\n");
-}
+void Hello(void) { printf("Hello world.\n"); }

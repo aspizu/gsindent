@@ -1,16 +1,9 @@
-void
-foo ()
-{
+void foo() {
   struct_a arr[] = {
-    {&a, sizeof (a)},
-    {&b, sizeof (b)},
-    {&c, sizeof (c)},
-    {&d, sizeof (d)}
-  };
+      {&a, sizeof(a)}, {&b, sizeof(b)}, {&c, sizeof(c)}, {&d, sizeof(d)}};
 
-  struct
-  {
+  struct {
     int a;
     int b;
-  } v = { 0 };
+  } v = {0};
 }

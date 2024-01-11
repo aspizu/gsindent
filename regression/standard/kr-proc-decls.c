@@ -7,12 +7,6 @@ void *bar();
 
 void *rab();
 
-char *foo()
-{
-    a++;
-}
+char *foo() { a++; }
 
-char eatme()
-{
-    foo();
-}
+char eatme() { foo(); }

@@ -1,1 +1,8 @@
-main (){ if (foo) { bar (33); grop (); } else foo (); return -1; }
+main() {
+  if (foo) {
+    bar(33);
+    grop();
+  } else
+    foo();
+  return -1;
+}

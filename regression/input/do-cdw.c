@@ -1,12 +1,9 @@
-foo (
-)
-{
-  do
-{
-      b = getchar ();
-}  while (b != 0xff);
+foo() {
+  do {
+    b = getchar();
+  } while (b != 0xff);
 
   do
-      b = getchar ();
+    b = getchar();
   while (b != 0xff);
 }

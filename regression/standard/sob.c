@@ -1,17 +1,15 @@
 
 /* Optional blanklines */
 
-main (foo)
-     int foo;
+main(foo) int foo;
 {
-  barf ();
+  barf();
 
-  *foo = eat_me ();
+  *foo = eat_me();
 
   return 93;
 
   /* Because */
-
 }
 
 /* there wre */

@@ -3,22 +3,19 @@
 // *INDENT-OFF*
 // *INDENT-ON*
 
-main (int argc, char **argv)
-{
+main(int argc, char **argv) {
   char *foo;
-  puts (foo);
+  puts(foo);
 }
 
 /* *INDENT-OFF* */
-grunt(int argc,
-      char **argv)
-{     char *foo;
-    puts(foo);
+grunt(int argc, char **argv) {
+  char *foo;
+  puts(foo);
 }
 /* *INDENT-ON* */
 
-frobp (int argc, char **argv)
-{
+frobp(int argc, char **argv) {
   char *foo;
-  puts (foo);
+  puts(foo);
 }

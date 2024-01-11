@@ -1,6 +1,4 @@
-int
-foo (void)
-{
-  p = qsort (*aasdfagddsdf, *afasdfsdafasd, sizeof (struct foo),
-	     comparisonFunction);
+int foo(void) {
+  p = qsort(*aasdfagddsdf, *afasdfsdafasd, sizeof(struct foo),
+            comparisonFunction);
 }

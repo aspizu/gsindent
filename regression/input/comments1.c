@@ -17,70 +17,60 @@
    IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES
    OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. */
 
+#define label_offset                                                           \
+  2 /* number of levels a label is placed to left                              \
+       of code */
 
-
-#define label_offset 2		/* number of levels a label is placed to left
-				   of code */
-
-int c;				/* And here is another comment which
-                                 occupies more than two lines. */
+int c; /* And here is another comment which
+        occupies more than two lines. */
 
 /* profile types */
-enum profile
-{
-  PRO_BOOL,			/* boolean */
-  PRO_INT,			/* integer */
-  PRO_FONT,			/* troff font */
-  PRO_IGN,			/* ignore it */
-  PRO_KEY,			/* -T switch */
-  PRO_SETTINGS,			/* bundled set of settings */
-  PRO_PRSTRING			/* Print string and exit */
+enum profile {
+  PRO_BOOL,     /* boolean */
+  PRO_INT,      /* integer */
+  PRO_FONT,     /* troff font */
+  PRO_IGN,      /* ignore it */
+  PRO_KEY,      /* -T switch */
+  PRO_SETTINGS, /* bundled set of settings */
+  PRO_PRSTRING  /* Print string and exit */
 };
 
 /* profile specials for booleans */
-enum on_or_off
-{
-  ONOFF_NA,			/* Not applicable.  Used in table for
-				   non-booleans.  */
-  OFF,				/* This option turns on the boolean variable
-				   in question.  */
-  ON				/* it turns it off */
+enum on_or_off {
+  ONOFF_NA, /* Not applicable.  Used in table for
+               non-booleans.  */
+  OFF,      /* This option turns on the boolean variable
+               in question.  */
+  ON        /* it turns it off */
 };
 
-
-
-void
-parse (tk)
-     enum codes tk;		/* the code for the construct scanned */
+void parse(tk) enum codes tk; /* the code for the construct scanned */
 {
   int i;
 
-  while (parser_state_tos->p_stack[parser_state_tos->tos] == ifhead
-	 && tk != elselit)
-    {
-      /* true if we have an if without an else */
+  while (parser_state_tos->p_stack[parser_state_tos->tos] == ifhead &&
+         tk != elselit) {
+    /* true if we have an if without an else */
 
-      /* apply the if(..) stmt ::= stmt reduction */
-      parser_state_tos->p_stack[parser_state_tos->tos] = stmt;
-      reduce ();		/* see if this allows any reduction */
+    /* apply the if(..) stmt ::= stmt reduction */
+    parser_state_tos->p_stack[parser_state_tos->tos] = stmt;
+    reduce(); /* see if this allows any reduction */
+  }
+
+  switch (tk) { /* go on and figure out what to do with the
+                   input */
+
+  case decl: /* scanned a declaration word */
+    parser_state_tos->search_brace = btype_2;
+    /* indicate that following brace should be on same line */
+    if (parser_state_tos->p_stack[parser_state_tos->tos] !=
+        decl) {           /* only put one declaration onto stack */
+      break_comma = true; /* while in declaration, newline should be
+                             forced after comma */
+      inc_pstack();
     }
 
-
-  switch (tk)
-    {				/* go on and figure out what to do with the
-				   input */
-
-    case decl:			/* scanned a declaration word */
-      parser_state_tos->search_brace = btype_2;
-      /* indicate that following brace should be on same line */
-      if (parser_state_tos->p_stack[parser_state_tos->tos] != decl)
-	{			/* only put one declaration onto stack */
-	  break_comma = true;	/* while in declaration, newline should be
-				   forced after comma */
-	  inc_pstack ();
-	}
-
-    default:
-      break;
-    }
+  default:
+    break;
+  }
 }

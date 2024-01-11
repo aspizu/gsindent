@@ -6,15 +6,14 @@
  * global variable.
  */
 
-    /*
-     * Another comment.
-     */
+/*
+ * Another comment.
+ */
 
-main (int argc, char **argv)
-{
+main(int argc, char **argv) {
   /*
    * Initialize XView.
    */
-  xv_init (XV_INIT_ARGC_PTR_ARGV, &argc, argv, NULL);
-  INSTANCE = xv_unique_key ();
+  xv_init(XV_INIT_ARGC_PTR_ARGV, &argc, argv, NULL);
+  INSTANCE = xv_unique_key();
 }

@@ -1,7 +1,7 @@
-void foo()
-{
+void foo() {
 #ifdef foo
-if (1) {
-} /* if */ { a++; }
+  if (1) {
+  } /* if */
+  { a++; }
 #endif
 }

@@ -1,6 +1,1 @@
-int
-foo(int a,
-    int *b,
-    char c)
-{
-}
+int foo(int a, int *b, char c) {}

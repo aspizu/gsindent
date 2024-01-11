@@ -1,21 +1,12 @@
 
-int
-toome();
+int toome();
 
 int metoo();
 
 void *bar();
 
-void *
-rab ();
+void *rab();
 
-char *
-foo()
-{
-  a++;
-}
+char *foo() { a++; }
 
-char eatme()
-{
-  foo();
-}
+char eatme() { foo(); }

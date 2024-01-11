@@ -18,4 +18,3 @@ int main() {
   printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
   printf(":");
 }
-

@@ -48,9 +48,9 @@
 #include <ctype.h>
 
 #ifndef isascii
-#define ISDIGIT(c) (isdigit ((unsigned char) (c)))
+#define ISDIGIT(c) (isdigit((unsigned char)(c)))
 #else
-#define ISDIGIT(c) (isascii (c) && isdigit (c))
+#define ISDIGIT(c) (isascii(c) && isdigit(c))
 #endif
 
 #ifndef NODIR
@@ -72,16 +72,16 @@
 #else /* !SYSNDIR */
 #include <ndir.h>
 #endif /* !SYSNDIR */
-#else /* !USG */
+#else  /* !USG */
 #include <sys/dir.h>
 #endif /* !USG */
 #endif /* !DIRENT */
 
-#if defined (HAVE_UNISTD_H)
+#if defined(HAVE_UNISTD_H)
 #include <unistd.h>
 #endif
 
-#if defined (_POSIX_VERSION)	/* Might be defined in unistd.h.  */
+#if defined(_POSIX_VERSION) /* Might be defined in unistd.h.  */
 /* POSIX does not require that the d_ino field be present, and some
    systems do not provide it. */
 #define REAL_DIR_ENTRY(dp) 1
@@ -90,7 +90,7 @@
 #endif
 
 #else /* NODIR */
-#define generate_backup_filename(v,f) simple_backup_name((f))
+#define generate_backup_filename(v, f) simple_backup_name((f))
 #endif /* NODIR */
 
 /* Default backup file suffix to use */
@@ -100,19 +100,16 @@ char *simple_backup_suffix = "~";
    table `version_control_values' below. */
 enum backup_mode version_control = unknown;
 
-
 /* Construct a simple backup name for PATHNAME by appending
    the value of `simple_backup_suffix'. */
 
-static char *
-simple_backup_name (pathname)
-     char *pathname;
+static char *simple_backup_name(pathname)
+char *pathname;
 {
   char *backup_name;
 
-  backup_name = xmalloc (strlen (pathname)
-			 + strlen (simple_backup_suffix) + 2);
-  sprintf (backup_name, "%s%s", pathname, simple_backup_suffix);
+  backup_name = xmalloc(strlen(pathname) + strlen(simple_backup_suffix) + 2);
+  sprintf(backup_name, "%s%s", pathname, simple_backup_suffix);
   return backup_name;
 }
 
@@ -120,35 +117,31 @@ simple_backup_name (pathname)
 /* If DIRENTRY is a numbered backup version of file BASE, return
    that number.  BASE_LENGTH is the string length of BASE. */
 
-static int
-version_number (base, direntry, base_length)
-     char *base;
-     char *direntry;
-     int base_length;
+static int version_number(base, direntry, base_length)
+char *base;
+char *direntry;
+int base_length;
 {
   int version;
   char *p;
 
   version = 0;
-  if (!strncmp (base, direntry, base_length)
-      && ISDIGIT (direntry[base_length + 2]))
-    {
-      for (p = &direntry[base_length + 2]; ISDIGIT (*p); ++p)
-	version = version * 10 + *p - '0';
-      if (p[0] != '~' || p[1])
-	version = 0;
-    }
+  if (!strncmp(base, direntry, base_length) &&
+      ISDIGIT(direntry[base_length + 2])) {
+    for (p = &direntry[base_length + 2]; ISDIGIT(*p); ++p)
+      version = version * 10 + *p - '0';
+    if (p[0] != '~' || p[1])
+      version = 0;
+  }
 
   return version;
 }
 
-
 /* Return the highest version of file FILENAME in directory
    DIRNAME.  Return 0 if there are no numbered versions. */
 
-static int
-highest_version (filename, dirname)
-     char *filename, *dirname;
+static int highest_version(filename, dirname)
+char *filename, *dirname;
 {
   DIR *dirp;
   struct direct *dp;
@@ -156,71 +149,66 @@ highest_version (filename, dirname)
   int this_version;
   int file_name_length;
 
-  dirp = opendir (dirname);
+  dirp = opendir(dirname);
   if (!dirp)
     return 0;
 
   highest_version = 0;
-  file_name_length = strlen (filename);
+  file_name_length = strlen(filename);
 
-  while ((dp = readdir (dirp)) != 0)
-    {
-      if (!REAL_DIR_ENTRY (dp) || NLENGTH (dp) <= file_name_length + 2)
-	continue;
+  while ((dp = readdir(dirp)) != 0) {
+    if (!REAL_DIR_ENTRY(dp) || NLENGTH(dp) <= file_name_length + 2)
+      continue;
 
-      this_version = version_number (filename, dp->d_name, file_name_length);
-      if (this_version > highest_version)
-	highest_version = this_version;
-    }
+    this_version = version_number(filename, dp->d_name, file_name_length);
+    if (this_version > highest_version)
+      highest_version = this_version;
+  }
 
-  closedir (dirp);
+  closedir(dirp);
   return highest_version;
 }
-
 
 /* Return the highest version number for file PATHNAME.  If there
    are no backups, or only a simple backup, return 0. */
 
-static int
-max_version (pathname)
-     char *pathname;
+static int max_version(pathname)
+char *pathname;
 {
   register char *p;
   register char *filename;
-  int pathlen = strlen (pathname);
+  int pathlen = strlen(pathname);
   int version;
 
   p = pathname + pathlen - 1;
   while (p > pathname && *p != '/')
     p--;
 
-  if (*p == '/')
-    {
-      int dirlen = p - pathname;
-      register char *dirname;
+  if (*p == '/') {
+    int dirlen = p - pathname;
+    register char *dirname;
 
-      filename = p + 1;
-      dirname = xmalloc (dirlen + 1);
-      strncpy (dirname, pathname, (dirlen));
-      dirname[dirlen] = '\0';
-      version = highest_version (filename, dirname);
-      free (dirname);
-      return version;
-    }
+    filename = p + 1;
+    dirname = xmalloc(dirlen + 1);
+    strncpy(dirname, pathname, (dirlen));
+    dirname[dirlen] = '\0';
+    version = highest_version(filename, dirname);
+    free(dirname);
+    return version;
+  }
 
   filename = pathname;
-  version = highest_version (filename, ".");
+  version = highest_version(filename, ".");
   return version;
 }
-
 
 /* Generate a backup filename for PATHNAME, dependent on the
    value of VERSION_CONTROL. */
 
 static char *
-generate_backup_filename (version_control, pathname)
-     enum backup_mode version_control;
-     char *pathname;
+    generate_backup_filename(version_control,
+                             pathname) enum backup_mode version_control;
+char *pathname;
 {
   int last_numbered_version;
   char *backup_name;
@@ -229,113 +217,101 @@ generate_backup_filename (version_control, pathname)
     return 0;
 
   if (version_control == simple)
-    return simple_backup_name (pathname);
+    return simple_backup_name(pathname);
 
-  last_numbered_version = max_version (pathname);
+  last_numbered_version = max_version(pathname);
   if (version_control == numbered_existing && last_numbered_version == 0)
-    return simple_backup_name (pathname);
+    return simple_backup_name(pathname);
 
   last_numbered_version++;
-  backup_name = xmalloc (strlen (pathname) + 16);
+  backup_name = xmalloc(strlen(pathname) + 16);
   if (!backup_name)
     return 0;
 
-  sprintf (backup_name, "%s.~%d~", pathname, last_numbered_version);
+  sprintf(backup_name, "%s.~%d~", pathname, last_numbered_version);
   return backup_name;
 }
 
 #endif /* !NODIR */
 
 static struct version_control_values values[] = {
-  {none, "never"},		/* Don't make backups. */
-  {simple, "simple"},		/* Only simple backups */
-  {numbered_existing, "existing"},	/* Numbered if they already exist */
-  {numbered_existing, "nil"},	/* Ditto */
-  {numbered, "numbered"},	/* Numbered backups */
-  {numbered, "t"},		/* Ditto */
-  {unknown, 0}			/* Initial, undefined value. */
+    {none, "never"},                 /* Don't make backups. */
+    {simple, "simple"},              /* Only simple backups */
+    {numbered_existing, "existing"}, /* Numbered if they already exist */
+    {numbered_existing, "nil"},      /* Ditto */
+    {numbered, "numbered"},          /* Numbered backups */
+    {numbered, "t"},                 /* Ditto */
+    {unknown, 0}                     /* Initial, undefined value. */
 };
 
-
-extern char *getenv ();
+extern char *getenv();
 
 /* Determine the value of `version_control' by looking in the
    environment variable "VERSION_CONTROL".  Defaults to
    numbered_existing. */
 
-enum backup_mode
-version_control_value ()
-{
+enum backup_mode version_control_value() {
   char *version;
   struct version_control_values *v;
 
-  version = getenv ("VERSION_CONTROL");
+  version = getenv("VERSION_CONTROL");
   if (version == 0 || *version == 0)
     return numbered_existing;
 
   v = &values[0];
-  while (v->name)
-    {
-      if (strcmp (version, v->name) == 0)
-	return v->value;
-      v++;
-    }
+  while (v->name) {
+    if (strcmp(version, v->name) == 0)
+      return v->value;
+    v++;
+  }
 
   return unknown;
 }
 
-
 /* Initialize information used in determining backup filenames. */
 
-void
-initialize_backups ()
-{
-  char *v = getenv ("SIMPLE_BACKUP_SUFFIX");
+void initialize_backups() {
+  char *v = getenv("SIMPLE_BACKUP_SUFFIX");
 
   if (v && *v)
     simple_backup_suffix = v;
 #ifdef NODIR
   version_control = simple;
-#else /* !NODIR */
-  version_control = version_control_value ();
-  if (version_control == unknown)
-    {
-      fprintf (stderr, "indent:  Strange version-control value\n");
-      fprintf (stderr, "indent:  Using numbered-existing\n");
-      version_control = numbered_existing;
-    }
+#else  /* !NODIR */
+  version_control = version_control_value();
+  if (version_control == unknown) {
+    fprintf(stderr, "indent:  Strange version-control value\n");
+    fprintf(stderr, "indent:  Using numbered-existing\n");
+    version_control = numbered_existing;
+  }
 #endif /* !NODIR */
 }
 
 /* Prints an error message using `perror' */
-extern void sys_error ();
+extern void sys_error();
 
 /* Make a backup copy of FILE, taking into account version-control.
    See the description at the beginning of the file for details. */
 
-void
-make_backup (file)
-     struct file_buffer *file;
+void make_backup(file) struct file_buffer *file;
 {
   int fd;
-  register char *p = file->name + strlen (file->name) - 1;
+  register char *p = file->name + strlen(file->name) - 1;
   char *backup_filename;
   char *new_backup_name;
 
-  backup_filename = generate_backup_filename (version_control, file->name);
-  if (!backup_filename)
-    {
-      fprintf (stderr, "indent: Can't make backup filename of %s",
-	       file->name);
-      exit (1);
-    }
+  backup_filename = generate_backup_filename(version_control, file->name);
+  if (!backup_filename) {
+    fprintf(stderr, "indent: Can't make backup filename of %s", file->name);
+    exit(1);
+  }
 
-  fd = creat (backup_filename, 0666);
+  fd = creat(backup_filename, 0666);
   if (fd < 0)
-    sys_error (backup_filename);
-  if (write (fd, file->data, file->size) != file->size)
-    sys_error (backup_filename);
+    sys_error(backup_filename);
+  if (write(fd, file->data, file->size) != file->size)
+    sys_error(backup_filename);
 
-  close (fd);
-  free (backup_filename);
+  close(fd);
+  free(backup_filename);
 }

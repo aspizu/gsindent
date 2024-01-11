@@ -1,18 +1,17 @@
-void foo()
-{
-    /* first comment */
+void foo() {
+  /* first comment */
 
-    /* second comment */ /* third comment */
+  /* second comment */ /* third comment */
 
- /*
-       * fourth comment
-    */
+  /*
+   * fourth comment
+   */
 
   /*
    ** fifth comment *
    */
 
-/*
-* sixth comment *
-*/
+  /*
+   * sixth comment *
+   */
 }

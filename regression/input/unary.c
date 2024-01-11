@@ -1,4 +1,1 @@
-foo ()
-{
-  return (int) -1;
-}
+foo() { return (int)-1; }

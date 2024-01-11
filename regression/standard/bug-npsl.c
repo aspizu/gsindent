@@ -1,4 +1,4 @@
-void foo ()
+void foo()
 /*                                                                      */
 /* This                                                                 */
 /* is in                                                                */
@@ -6,10 +6,9 @@ void foo ()
 /* column                                                               */
 /*                                                                      */
 /*                                                                      */
-{
-}
+{}
 
-void bar ()
+void bar()
 /*                                                                      */
 /*                                                                      */
 /*                                                                      */
@@ -24,5 +23,4 @@ void bar ()
 /*                                                                      */
 /*                                                                      */
 /*                                                                      */
-{
-}
+{}

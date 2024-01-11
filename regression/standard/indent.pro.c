@@ -1,5 +1,4 @@
-main()
-{
+main() {
   int i, j;
 
   i <<= 1;

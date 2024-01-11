@@ -1,1 +1,1 @@
-b(struct z *a){}
+b(struct z *a) {}

@@ -1,18 +1,17 @@
-function()
-{
-    if (do_stuff1() == ERROR)
-        goto cleanup1;
+function() {
+  if (do_stuff1() == ERROR)
+    goto cleanup1;
 
-    if (do_stuff2() == ERROR)
-        goto cleanup2;
+  if (do_stuff2() == ERROR)
+    goto cleanup2;
 
-    return SUCCESS;
+  return SUCCESS;
 
-  cleanup2:
-    do_cleanup2();
+cleanup2:
+  do_cleanup2();
 
-  cleanup1:
-    do_cleanup1();
+cleanup1:
+  do_cleanup1();
 
-    return ERROR;
+  return ERROR;
 }

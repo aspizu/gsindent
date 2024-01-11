@@ -1,6 +1,6 @@
-main ()
-{
+main() {
   int size;
 
-  for (size_ = 32; size_ < n; size_ <<= 1);
+  for (size_ = 32; size_ < n; size_ <<= 1)
+    ;
 }

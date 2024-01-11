@@ -1,1 +1,1 @@
-char c = (char) 1;
+char c = (char)1;

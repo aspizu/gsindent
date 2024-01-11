@@ -1,9 +1,7 @@
 /**
  * Test comment
  */
-int
-a(int b)
-{
+int a(int b) {
   if (a == b) {
     /* XXX */
   }

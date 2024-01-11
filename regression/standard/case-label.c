@@ -1,18 +1,15 @@
 
-void
-bar (int foo)
-{
-  switch (foo)
-    {
-    case 0:
-      abort ();
-      break;
+void bar(int foo) {
+  switch (foo) {
+  case 0:
+    abort();
+    break;
 
-    case 1:
-      fuckme ();
-      break;
+  case 1:
+    fuckme();
+    break;
 
-    default:
-      abort ();
-    }
+  default:
+    abort();
+  }
 }
