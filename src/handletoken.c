@@ -156,7 +156,7 @@ static void copy_id(const codes_ty type_code, BOOLEAN *force_nl,
 
   if ((type_code == sp_paren) &&
       ((!settings.space_after_if && (*token == 'i')) ||
-       (!settings.space_after_for && (*token == 'f')) ||
+       (!settings.space_after_for && (*token == 'r')) ||
        (!settings.space_after_while && (*token == 'u')))) {
     parser_state_tos->want_blank = false;
   }
