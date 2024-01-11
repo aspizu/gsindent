@@ -155,7 +155,9 @@ static void copy_id(const codes_ty type_code, BOOLEAN *force_nl,
   /* Handle the options -nsaf, -nsai and -nsaw */
 
   if ((type_code == sp_paren) &&
-      ((!settings.space_after_if && (*token == 'i')) ||
+      ((!settings.space_after_if &&
+        (*token == 'i' ||
+         (token[0] == 'e' && token[1] == 'l' && token[2] == 'i'))) ||
        (!settings.space_after_for && (*token == 'r')) ||
        (!settings.space_after_while && (*token == 'u')))) {
     parser_state_tos->want_blank = false;
@@ -1174,7 +1176,10 @@ static void handle_token_sp_paren(BOOLEAN *sp_sw, codes_ty *hd_type) {
   *sp_sw = true;
 
   /* remember the type of header for later use by parser */
-  *hd_type = (*token == 'i' ? ifstmt : (*token == 'u' ? whilestmt : forstmt));
+  *hd_type =
+      (*token == 'i' || (token[0] == 'e' && token[1] == 'l' && token[2] == 'i')
+           ? ifstmt
+           : (*token == 'u' ? whilestmt : forstmt));
 }
 
 /**
