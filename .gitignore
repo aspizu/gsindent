@@ -10,3 +10,5 @@ doc/indent.html
 man/texinfo2man
 *.o
 src/indent
+target/
+.cache/
